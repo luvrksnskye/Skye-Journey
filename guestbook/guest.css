@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'departure-mono';
+    src: url('../assets/fonts/DepartureMono-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'genshin impact';
+    src: url('../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+}
+
+/* Background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    font-family: 'genshin impact', Arial, sans-serif;
+}
+.container p {
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    margin-top: 20px;
+    font-family: 'departure-mono', monospace;
+}
+
+.guestbook-image {
+    width: 300px; 
+    height: auto;
+    border-radius: 10px; 
+    position: fixed;
+    top: 260px;
+    left: 300px;
+}
+.notification-image {
+    position: fixed;
+    top: -100px;
+    right: 20px;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    max-width: 300px;
+    animation: float 3s ease-in-out infinite;
+
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .notification-image.show {
+    top: 20px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .notification-image.hide {
+    opacity: 1;
+    transform: translateX(calc(100% + 40px));
+  }
+  
+  .notification-image:hover {
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.227))
+           drop-shadow(0 0 50px rgba(255, 255, 255, 0.188))
+           drop-shadow(0 0 70px rgba(255, 255, 255, 0.274));
+           transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+  }
+        /* scrollbar*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #7cc6ffcc;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7cc6ffcc;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7db8ff;
+}

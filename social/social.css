@@ -1,0 +1,738 @@
+
+@font-face {
+  font-family: 'departure-mono';
+  src: url('../assets/fonts/DepartureMono-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'genshin impact';
+  src: url('../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+}
+@font-face {
+  font-family: 'ZHFont';
+  src: url('../assets/fonts/zhcn.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -2;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.welcome-to-social-page-panel {
+  text-align: left;
+  margin-bottom: 30px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.welcome-to-social-panel img {
+  max-width: 50%;
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.133))
+  drop-shadow(0 0 50px rgba(255, 255, 255, 0.118))
+  drop-shadow(0 0 70px rgba(255, 255, 255, 0.111));
+}
+
+@keyframes float {
+  0%, 100% {
+      transform: translateY(0); 
+  }
+  50% {
+      transform: translateY(-10px); 
+  }
+}
+.social-icons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1); /* Initially white */
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover img {
+  filter: none; /* Restore original color on hover */
+  transform: scale(1.2); /* Optional: Add scale effect on hover */
+}
+
+  
+  /* Modify the chat window to fit within the chatbox grid area */
+#chat-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(150, 181, 215, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+#chat-window .window {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    overflow-y: auto;
+  }
+  
+#chat-window .titlebar {
+    background-color: rgba(150, 181, 215, 0.3);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'genshin impact', Arial, sans-serif;
+    border-radius: 8px 8px 0 0;
+    text-shadow: 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #a0deff,
+    0 0 82px #a0deff,
+    0 0 92px #a0deff;
+    animation: pulsate 1.5s infinite alternate;
+  }
+  
+#chat-window .window-buttons {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+  }
+  
+#chat-window .window-button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+#chat-window .window-button.minimize {
+    background-color: #a0deff;
+    border: 1px solid rgba(122, 215, 255, 0.137);
+  }
+  
+#chat-window .window-button.maximize {
+    background-color: #ca9eff;
+    border: 1px solid rgba(231, 194, 255, 0.221);
+  }
+  
+#chat-window .window-button.close {
+    background-color: #ffa2c0;
+    border: 1px solid rgba(255, 160, 183, 0.155);
+  }
+  
+#chat-window .window-button:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  
+#chat-window .content-wrapper {
+    flex: 1;
+    overflow: auto;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+  
+#chat-window .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  
+#chat-window .content iframe {
+    width: 100%;
+    flex: 1;
+    border: none;
+  }
+  
+  /* Weather window styles */
+  #forecast-window-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(150, 181, 215, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #forecast-window-3 .window {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  #forecast-window-3 .titlebar {
+    background-color: rgba(150, 181, 215, 0.3);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'genshin impact', Arial, sans-serif;
+    border-radius: 8px 8px 0 0;
+    text-shadow: 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #a0deff,
+    0 0 82px #a0deff,
+    0 0 92px #a0deff;
+    animation: pulsate 1.5s infinite alternate;
+  }
+
+  #forecast-window-3 .window-buttons {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  #forecast-window-3 .window-button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  #forecast-window-3 .window-button.minimize {
+    background-color: #a0deff;
+    border: 1px solid rgba(122, 215, 255, 0.137);
+  }
+
+  #forecast-window-3 .window-button.maximize {
+    background-color: #ca9eff;
+    border: 1px solid rgba(231, 194, 255, 0.221);
+  }
+
+  #forecast-window-3 .window-button.close {
+    background-color: #ffa2c0;
+    border: 1px solid rgba(255, 160, 183, 0.155);
+  }
+
+  #forecast-window-3 .window-button:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+
+  #forecast-window-3 .content-weather {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #forecast-window-3 .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+/* Scrollbar styles - applied to both nav and updates */
+#forecast-window-3 .content::-webkit-scrollbar{
+    width: 8px;
+}
+
+#forecast-window-3 .content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+#forecast-window-3 .content::-webkit-scrollbar-thumb{
+    background: #acc6ff;
+    border-radius: 10px;
+}
+
+#forecast-window-3 .content::-webkit-scrollbar-thumb:hover{
+    background: #aec8ff;
+}
+
+  .weather-box {
+    text-align: center;
+  }
+
+  .weather-box img {
+    width: 60%;
+    margin-top: 30px;
+  }
+
+  .weather-box .temperature {
+    position: relative;
+    color: #ffffff;
+    font-size: 4rem;
+    font-weight: 800;
+    margin-top: 30px;
+    margin-left: -16px;
+  }
+
+  .weather-box .temperature span {
+    position: absolute;
+    margin-left: 4px;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .weather-box .description {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .weather-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  .weather-details .humidity,
+  .weather-details .wind {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 100px;
+  }
+
+  .weather-details i {
+    color: #ffffff;
+    font-size: 26px;
+    margin-right: 10px;
+    margin-top: 6px;
+  }
+
+  .weather-details span {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  @keyframes pulsate {
+    100% {
+      text-shadow: 0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #a0deff,
+      0 0 80px #a0deff,
+      0 0 90px #a0deff,
+      0 0 100px #a0deff,
+      0 0 150px #a0deff;
+    }
+    0% {
+      text-shadow: 0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #a0deff,
+      0 0 45px #a0deff,
+      0 0 55px #a0deff,
+      0 0 70px #a0deff,
+      0 0 80px #a0deff;
+    }
+  }
+  
+  .box {
+    background: rgba(255, 255, 255, 0.042);
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid rgba(150, 181, 215, 0.5);
+    backdrop-filter: blur(10px);
+}
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    gap: 20px;
+    min-height: 80vh;
+    color: white;
+    font-family: 'departure-mono', monospace;
+    margin-top: 5%;
+}
+
+  /*currently*/
+  
+  #current .hl {
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 1px;
+  }
+  
+  #current .date {
+    text-align: right;
+    font-size: 0.8em;
+    padding-top: 5px;
+  }
+  
+  /*status cafe*/
+  
+
+  #statuscafe {
+    padding: .0em;
+    color: white;
+    border-radius: 10px;
+    font-family: 'departure-mono', monospace;
+    background-color: rgba(97, 145, 255, 0.722);
+    border: 1px solid rgba(255, 255, 255, 0.638);
+}
+#statuscafe-username {
+    margin-bottom: .5em;
+    color: white;
+    font-family: 'departure-mono', monospace;
+    background-image: url(../assets/banners/06.PNG);
+    background-size: cover;
+    border-radius: 10px;
+   
+}
+#statuscafe-username a{
+  color: rgb(143, 204, 255);
+}
+#statuscafe-username::before {
+  content: url(../assets/gifs/moon.gif) ' ';
+}
+#statuscafe-content {
+    margin: 0 1em 0.5em 1em;
+    color: white;
+    
+}
+
+  
+  /* content */
+  #weather {
+    width: 150%;        /* Takes full width of its grid area */
+    height: 450px;      /* Reduced height */
+    margin-bottom: 20px;
+}
+
+#chat {
+    height: 450px; 
+    width: 90%;   
+    margin-left: 58px;
+    
+  
+}
+#current{
+  margin-left: 10px;
+  margin-top: -150px;
+  width: 25%;
+}
+#outro{
+  margin-left: 500px;
+  width: 30%;
+  margin-top: -50px;   
+}
+#safe{
+  margin-left: 1060px;
+  margin-top: -350px;
+  width: 25%;
+}
+#info{
+  width: 170%;       
+  height: 450px;     
+  margin-bottom: 20px;
+  margin-left: -150px;
+}
+
+#status {
+  margin-left: 490px;
+  margin-top: -150px;
+  width: 30%;
+  text-align: center;
+  position: relative;
+  color: white;
+  font-family: 'ZHFont', sans-serif;
+  background-image: url(../assets/banners/03.PNG);
+  background-size: cover;
+}
+#status p{
+  color: white;
+  font-family: 'genshin impact', Arial, sans-serif;
+  text-shadow: 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #a0deff37,
+    0 0 82px #a0deff1b,
+    0 0 92px #a0deff30;
+    animation: pulsate 1.5s infinite alternate;
+}
+@keyframes pulsate {
+  100% {
+    text-shadow: 0 0 4px #fff,
+    0 0 11px #fff,
+    0 0 19px #fff,
+    0 0 40px #a0deff56,
+    0 0 80px #a0deff55,
+    0 0 90px #a0deff3d,
+    0 0 100px #a0deff33,
+    0 0 150px #a0deff50;
+  }
+  0% {
+    text-shadow: 0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 10px #ffffff5a,
+    0 0 45px #a0deff2f,
+    0 0 55px #a0deff3a,
+    0 0 70px #a0deff2f,
+    0 0 80px #a0deff38;
+  }
+}
+
+      /* scrollbar*/
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #7cc6ffcc;
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #7cc6ffcc;
+      
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #7db8ff;
+      }
+      
+
+      #current p{
+        color: white;
+        font-family: 'ZHFont', sans-serif;
+      }
+
+#current .hl {
+  background: #7db7ff;
+  color: var(--white);
+  font-weight: lighter;
+}
+#safe p{
+  text-align: center;
+  color: white;
+  font-family: 'ZHFont', sans-serif;
+}
+#outro p{
+  color: white;
+  font-family: 'departure-mono', monospace;
+  font-size: medium;
+}
+#outro a{
+  color: #7db7ff;
+}
+
+#stats{
+  margin-left: 1060px;
+  margin-top: -550px;
+  width: 25%;
+}
+#stats p{
+  color: white;
+  font-family: 'genshin impact', Arial, sans-serif;
+  text-shadow: 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #a0deff37,
+    0 0 82px #a0deff1b,
+    0 0 92px #a0deff30;
+    animation: pulsate 1.5s infinite alternate;
+}
+@keyframes pulsate {
+  100% {
+    text-shadow: 0 0 4px #fff,
+    0 0 11px #fff,
+    0 0 19px #fff,
+    0 0 40px #a0deff56,
+    0 0 80px #a0deff55,
+    0 0 90px #a0deff3d,
+    0 0 100px #a0deff33,
+    0 0 150px #a0deff50;
+  }
+  0% {
+    text-shadow: 0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 10px #ffffff5a,
+    0 0 45px #a0deff2f,
+    0 0 55px #a0deff3a,
+    0 0 70px #a0deff2f,
+    0 0 80px #a0deff38;
+  }
+}
+
+#webring{
+  margin-left: 1060px;
+  margin-top: 50px;
+  width: 25%;
+  color: white;
+  font-family: 'departure-mono', monospace;
+}
+#webring p{
+  color: white;
+  font-family: 'genshin impact', Arial, sans-serif;
+  text-shadow: 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #a0deff37,
+    0 0 82px #a0deff1b,
+    0 0 92px #a0deff30;
+    animation: pulsate 1.5s infinite alternate;
+}
+@keyframes pulsate {
+  100% {
+    text-shadow: 0 0 4px #fff,
+    0 0 11px #fff,
+    0 0 19px #fff,
+    0 0 40px #a0deff56,
+    0 0 80px #a0deff55,
+    0 0 90px #a0deff3d,
+    0 0 100px #a0deff33,
+    0 0 150px #a0deff50;
+  }
+  0% {
+    text-shadow: 0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 10px #ffffff5a,
+    0 0 45px #a0deff2f,
+    0 0 55px #a0deff3a,
+    0 0 70px #a0deff2f,
+    0 0 80px #a0deff38;
+  }
+}
+.skye-code-container {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin: 10px 0;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+  
+  .skye-code-block {
+    font-family: 'departure-mono', monospace;
+  margin: 0;
+  padding: 5px 5px 5px 10px;
+  white-space: pre;
+  cursor: text;
+  overflow-x: auto;
+  max-width: 100%;
+  color: rgba(255, 255, 255, 0.8);
+  }
+  .skye-code-block::-webkit-scrollbar {
+  height: 8px; /* Horizontal scrollbar height */
+  background-color: transparent;
+  }
+  
+  .skye-code-block::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  }
+  
+  .skye-code-block::-webkit-scrollbar-track {
+  background-color: transparent;
+  }
+  .skye-copy-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'departure-mono', monospace;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    
+    .skye-copy-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    }
+    #community{
+      margin-left: 10px;
+      margin-top: -360px;
+      width: 25%;
+      color: white;
+      font-family: 'departure-mono', monospace;
+    }
+    #community p{
+      color: white;
+      font-family: 'genshin impact', Arial, sans-serif;
+      text-shadow: 0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #a0deff37,
+        0 0 82px #a0deff1b,
+        0 0 92px #a0deff30;
+        animation: pulsate 1.5s infinite alternate;
+    }
+    @keyframes pulsate {
+      100% {
+        text-shadow: 0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #a0deff56,
+        0 0 80px #a0deff55,
+        0 0 90px #a0deff3d,
+        0 0 100px #a0deff33,
+        0 0 150px #a0deff50;
+      }
+      0% {
+        text-shadow: 0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff,
+        0 0 10px #ffffff5a,
+        0 0 45px #a0deff2f,
+        0 0 55px #a0deff3a,
+        0 0 70px #a0deff2f,
+        0 0 80px #a0deff38;
+      }
+    }

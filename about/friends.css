@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+
+@font-face {
+    font-family: 'departure-mono';
+    src: url('../assets/fonts/DepartureMono-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'genshin impact';
+    src: url('../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+}
+
+#digital-clock {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 20px;
+    font-family: 'departure-mono', monospace;
+    color: #ffffff;
+    background-color: rgba(109, 165, 255, 0.445);
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+body {
+    overflow: hidden;
+    font-family: 'departure-mono', monospace;
+}
+.title {
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    margin-bottom: 20px; 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-family: 'genshin impact', Arial, sans-serif;
+}
+
+.about {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 0; 
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-family: "Cinzel", serif;
+    font-weight: bold;
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+}
+
+.info-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.105);
+    border: 1px solid rgba(255, 255, 255, 0.137);
+    border-radius: 20px;
+    color: #fff;
+    padding: 40px;
+    max-width: 480px;
+    font-family: 'departure-mono', monospace;
+    position: fixed;
+    left: 300px; 
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    z-index: 3;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease, background-image 0.3s ease;
+}
+
+.info-panel h2 {
+    font-size: clamp(18px, 2vw, 24px);
+    margin: 0 0 15px 0;
+    text-align: center;
+    font-family: 'departure-mono', monospace;
+}
+
+.info-panel p {
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.5;
+    font-family: 'departure-mono', monospace;
+    margin: 0;
+}
+
+.close-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+@media screen and (max-width: 768px) {
+    .info-panel {
+        max-width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+}
+.star-tabs {
+display: flex;
+gap: 10px;
+margin: 15px 0;
+flex-wrap: wrap;
+}
+
+.star-tab {
+padding: 8px 12px;
+background: rgba(255, 255, 255, 0.25);
+border: 1px solid rgba(255, 255, 255, 0.3);
+border-radius: 5px;
+color: white;
+font-family: 'departure-mono', monospace;
+cursor: pointer;
+font-size: clamp(14px, 1.5vw, 16px);
+transition: background-color 0.3s;
+}
+
+.star-tab:hover {
+background: rgba(255, 255, 255, 0.4);
+}
+
+.star-tab.active {
+background: rgba(185, 226, 255, 0.3);
+border-color: rgba(185, 226, 255, 0.5);
+}
+
+.star-tab-content {
+display: none;
+padding: 10px 0;
+}
+
+.star-tab-content.active {
+display: block;
+}
+
+.info-panel {
+max-height: 80vh;
+overflow-y: auto;
+}
+
+.info-panel::-webkit-scrollbar {
+width: 8px;
+}
+
+.info-panel::-webkit-scrollbar-track {
+background: rgba(255, 255, 255, 0.1);
+border-radius: 4px;
+}
+
+.info-panel::-webkit-scrollbar-thumb {
+background: rgba(255, 255, 255, 0.3);
+border-radius: 4px;
+}
+.notification-image {
+    position: fixed;
+    top: -100px;
+    right: 20px;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    max-width: 300px;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .notification-image.show {
+    top: 20px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .notification-image.hide {
+    opacity: 1;
+    transform: translateX(calc(100% + 40px));
+  }
+  
+  .notification-image:hover {
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.227))
+           drop-shadow(0 0 50px rgba(255, 255, 255, 0.188))
+           drop-shadow(0 0 70px rgba(255, 255, 255, 0.274));
+           transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+  }
