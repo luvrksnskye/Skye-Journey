@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skye's Diary</title>
-    <link rel="icon" type="image/x-icon" href="../assets/buttons-icons/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../../assets/buttons-icons/favicon.png">
     <link rel="stylesheet" href="diary.css">
     <link rel="stylesheet" href="diary-music-player.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,19 +13,19 @@
 
     <div class="video-background" id="mainBackground">
         <video id="mainVideo" autoplay muted loop>
-            <source src="../assets/background/Day mode scene.mp4" type="video/mp4">
+            <source src="../../assets/background/Day mode scene.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="video-splash-transition" id="transitionVideo">
         <video id="transition" autoplay muted>
-            <source src="../assets/transitions/Splash Transition - BeardBoyDigital.webm" type="video/webm">
+            <source src="../../assets/transitions/Splash Transition - BeardBoyDigital.webm" type="video/webm">
         </video>
     </div>
 
     <div class="video-background" id="secondBackground">
         <video id="secondVideo" autoplay muted loop>
-            <source src="../assets/background/Night Scene Animated.mp4" type="video/mp4">
+            <source src="../../assets/background/Night Scene Animated.mp4" type="video/mp4">
         </video>
     </div>
       <!-- Diary entries -->
@@ -35,7 +35,7 @@
         </div>
         <div class="memo"> 
             <div class="header">January 2025 ✦
-                <img src="../assets/gifs/moon.gif" height="35px" align="right">
+                <img src="../../assets/gifs/moon.gif" height="35px" align="right">
             </div><br>
             <a href="diary-memo-notes/big-update-entry.html" onclick="return loadPage(this.href)">
                 <b>✦ Very soon ✦</b>
@@ -45,7 +45,7 @@
             <br><br>
             
             <div class="header">December 2024 ✦
-                <img src="../assets/gifs/jellyfish.gif" height="35px" align="right">
+                <img src="../../assets/gifs/jellyfish.gif" height="35px" align="right">
             </div><br>
             <a href="diary-memo-notes/wintertime-entry.html" onclick="return loadPage(this.href)">
                 <b>✦ 12.31.24 ✦</b>
@@ -59,7 +59,7 @@
             <br><br>
             
             <div class="header">June 2023 ✦
-                <img src="../assets/gifs/umbrella.gif" height="35px" align="right">
+                <img src="../../assets/gifs/umbrella.gif" height="35px" align="right">
             </div><br>
             <a href="diary-memo-notes/summertime-entry.html" onclick="return loadPage(this.href)">
                 <b>✦ 06.28.23 ✦</b>
@@ -129,7 +129,7 @@
         </div>
     </div>
     <div class="corner-icon">
-         <a href="../index.html"> <img src="../assets/buttons-icons/Room Icon_Entryway.png" width="130" height="90" alt="Corner Icon"></a>
+         <a href="../../home/index.html"> <img src="../../assets/buttons-icons/Room Icon_Entryway.png" width="130" height="90" alt="Corner Icon"></a>
     </div>
  <!-- Message :) -->
  <div id="messageOverlay" class="message-overlay">
@@ -140,7 +140,7 @@
   <!-- Javascript :) -->
     <script>
       
-        const pageFlipSound = new Audio('../assets/sound-effects/sound effect.mp3');
+        const pageFlipSound = new Audio('../../assets/sound-effects/sound effect.mp3');
         
         function loadPage(url) {
 
@@ -167,7 +167,7 @@
 <script>
 
     var b = document.body;
-    var imgurl = "../assets/mouse/cursor.ico";
+    var imgurl = "../../assets/mouse/cursor.ico";
     var size = [10, 20];
     function rand(min, max)
     {

@@ -5,11 +5,11 @@
 
 @font-face {
     font-family: 'departure-mono';
-    src: url('../assets/fonts/DepartureMono-Regular.woff') format('woff');
+    src: url('../../assets/fonts/DepartureMono-Regular.woff') format('woff');
 }
 @font-face {
     font-family: 'genshin impact';
-    src: url('../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+    src: url('../../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
 }
 
 #digital-clock {

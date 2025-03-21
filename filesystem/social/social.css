@@ -1,15 +1,15 @@
 
 @font-face {
   font-family: 'departure-mono';
-  src: url('../assets/fonts/DepartureMono-Regular.woff') format('woff');
+  src: url('../../assets/fonts/DepartureMono-Regular.woff') format('woff');
 }
 @font-face {
   font-family: 'genshin impact';
-  src: url('../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+  src: url('../../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
 }
 @font-face {
   font-family: 'ZHFont';
-  src: url('../assets/fonts/zhcn.ttf') format('truetype');
+  src: url('../../assets/fonts/zhcn.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -421,7 +421,7 @@
     margin-bottom: .5em;
     color: white;
     font-family: 'departure-mono', monospace;
-    background-image: url(../assets/banners/06.PNG);
+    background-image: url(../../assets/banners/06.PNG);
     background-size: cover;
     border-radius: 10px;
    
@@ -430,7 +430,7 @@
   color: rgb(143, 204, 255);
 }
 #statuscafe-username::before {
-  content: url(../assets/gifs/moon.gif) ' ';
+  content: url(../../assets/gifs/moon.gif) ' ';
 }
 #statuscafe-content {
     margin: 0 1em 0.5em 1em;
@@ -483,7 +483,7 @@
   position: relative;
   color: white;
   font-family: 'ZHFont', sans-serif;
-  background-image: url(../assets/banners/03.PNG);
+  background-image: url(../../assets/banners/03.PNG);
   background-size: cover;
 }
 #status p{

@@ -150,7 +150,7 @@ function loadDiaryEntry(starId) {
 
 // Function to load the page
 function loadPage(url) {
-  const pageFlipSound = new Audio('../assets/sound-effects/sound effect.mp3');
+  const pageFlipSound = new Audio('../../assets/sound-effects/sound effect.mp3');
   pageFlipSound.currentTime = 0;
   pageFlipSound.play()
     .catch(error => console.log('Audio playback failed:', error));

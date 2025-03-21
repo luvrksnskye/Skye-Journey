@@ -129,10 +129,10 @@ document.head.appendChild(styleSheet);
   
 // Star Sound Effects  
 const sounds = {  
-  starTouch: new Audio('../assets/sound-effects/star-touch.mp3'),  
-  luma: new Audio('../assets/sound-effects/luma.mp3'),  
-  dogbark: new Audio('../assets/sound-effects/undertale dog bark.mp3'),
-  catsound: new Audio('../assets/sound-effects/undertale hot cat sound effect.mp3')
+  starTouch: new Audio('../../assets/sound-effects/star-touch.mp3'),  
+  luma: new Audio('../../assets/sound-effects/luma.mp3'),  
+  dogbark: new Audio('../../assets/sound-effects/undertale dog bark.mp3'),
+  catsound: new Audio('../../assets/sound-effects/undertale hot cat sound effect.mp3')
 };  
   
 const namedStars = [  
@@ -179,7 +179,7 @@ const zodiacPeriods = [
 let data;
 
 // Load the stars JSON data
-fetch('../credits/stars.json')
+fetch('../../credits/stars.json')
   .then((response) => response.json())
   .then((starsData) => {
     data = starsData;
@@ -211,13 +211,13 @@ function createInfoPanel(star) {
   panel.className = 'star-info-panel';
   
   const img = document.createElement('img');
-  img.src = '../assets/achievements/New-star.png';
+  img.src = '../../assets/achievements/New-star.png';
   img.alt = 'Star Achievement';
   
   panel.appendChild(img);
   
   panel.addEventListener('click', () => {
-    window.location.href = '../stellar-hunter/encyclopedia.html';
+    window.location.href = '../../stellar-hunter/index.html';
   });
   
   document.body.appendChild(panel);

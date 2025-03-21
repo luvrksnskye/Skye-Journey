@@ -2,13 +2,13 @@
 
 @font-face {
     font-family: 'ZHFont';
-    src: url('../assets/fonts/zhcn.ttf') format('truetype');
+    src: url('../../assets/fonts/zhcn.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'genshin impact';
-    src: url('../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+    src: url('../../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
 }
 #island * {
     box-sizing: border-box;
@@ -51,7 +51,7 @@
     object-fit: cover;
 }
 .container {
-    background-image: url('../assets/about-me/journal.png');
+    background-image: url('../../assets/about-me/journal.png');
     background-size: cover;
     position: absolute;
     width: 1270px;
@@ -115,7 +115,7 @@
 
 .header-special {
     background-color: rgba(255, 255, 255, 0);
-    background-image: url("../assets/banners/03.PNG");
+    background-image: url("../../assets/banners/03.PNG");
     background-size: cover;
     background-repeat: no-repeat;
     width: 93%;
@@ -130,7 +130,7 @@
 }
 .header-zodiac {
     background-color: rgba(255, 255, 255, 0);
-    background-image: url("../assets/banners/03.PNG");
+    background-image: url("../../assets/banners/03.PNG");
     background-size: cover;
     background-repeat: no-repeat;
     width: 93%;
@@ -145,7 +145,7 @@
 }
 .header-pets {
     background-color: rgba(255, 255, 255, 0);
-    background-image: url("../assets/banners/03.PNG");
+    background-image: url("../../assets/banners/03.PNG");
     background-size: cover;
     background-repeat: no-repeat;
     width: 93%;

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Skye Journey</title>
-    <link rel="icon" type="image/x-icon" href="../assets/buttons-icons/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../../assets/buttons-icons/favicon.png">
     <link rel="stylesheet" href="music-player-personal.css">
     <link rel="stylesheet" href="friends.css">
-    <link rel="stylesheet" href="../nav bar.css">
+    <link rel="stylesheet" href="../../nav bar.css">
   
   </head>
   <body>
@@ -47,7 +47,7 @@
 <!--Background-->
     <div class="video-background" id="mainBackground">
       <video id="mainVideo" autoplay muted loop>
-          <source src="../assets/background/Intro-background.webm" type="video/webm">
+          <source src="../../assets/background/Intro-background.webm" type="video/webm">
       </video>
   </div>
       <!-- Corner clock -->
@@ -198,7 +198,7 @@ updateClock();
 <script>
 
   var b = document.body;
-  var imgurl = "../assets/mouse/cursor.ico";
+  var imgurl = "../../assets/mouse/cursor.ico";
   var size = [10, 20];
   function rand(min, max)
   {
@@ -259,23 +259,24 @@ updateClock();
   <div id="nav2-custom-sidebar" class="hidden">
     <h2>Personal</h2>
     <ul>
-    <li><a href="../home/index.html"><img src="../assets/nav-bar/home.png" alt="Home Icon">Home</a></li>
-    <li><a href="../about/"><img src="../assets/nav-bar/more.png" alt="about Icon">About me</a></li>
-    <li><a href="../about/Skye's Diary.html"><img src="../assets/nav-bar/my-journey.png" alt="diary Icon">Journal</a></li>
-    <li><a href="../about/music.html"><img src="../assets/nav-bar/music.png" alt="music Icon">Music</a></li>
-    <li><a href="../about/video-games.html"><img src="../assets/nav-bar/games.png" alt="games Icon">Video games</a></li>
-    <li><a href="../about/friends.html"><img src="../assets/nav-bar/friends.png" alt="friends Icon">Friends <img src="../assets/buttons-icons/Phone App_Navigation.png" alt="new symbol"></a></li>
-    <li><a href="../guestbook/index.html"><img src="../assets/nav-bar/guestbook.png" alt="guestbook Icon">Guestbook</a></li>
-    <li><a href="../about/FAQ.html"><img src="../assets/nav-bar/FAQ.png" alt="faq Icon">FAQ</a></li>
-    <li><a href="../about/hobbies.html"><img src="../assets/nav-bar/hobby.png" alt="Chat Icon">Hobbies</a></li>
-    <li><a href="../about/gallery.html"><img src="../assets/nav-bar/archives.png" alt="archives Icon">Gallery</a></li>
-    <li><a href="../about/kitty.html"><img src="../assets/nav-bar/cat.png" alt="kitty Icon">Kitty</a></li>
+      <li><a href="../../home/index.html"><img src="../../assets/nav-bar/home.png" alt="Home Icon">Home</a></li>
+      <li><a href="../../personal/#"><img src="../../assets/nav-bar/more.png" alt="about Icon">About me</a></li>
+      <li><a href="../../personal/journal/index.html"><img src="../../assets/nav-bar/my-journey.png" alt="diary Icon">Journal</a></li>
+      <li><a href="#"><img src="../../assets/nav-bar/music.png" alt="music Icon">Music</a></li>
+      <li><a href="#"><img src="../../assets/nav-bar/games.png" alt="games Icon">Video games</a></li>
+      <li><a href="../../personal/friends/#"><img src="../../assets/nav-bar/friends.png" alt="friends Icon">Friends <img src="../../assets/buttons-icons/Phone App_Navigation.png" alt="new symbol"></a></li>
+      <li><a href="../../personal/guestbook/index.html"><img src="../../assets/nav-bar/guestbook.png" alt="guestbook Icon">Guestbook</a></li>
+      <li><a href="../../personal/#"><img src="../../assets/nav-bar/FAQ.png" alt="faq Icon">FAQ</a></li>
+      <li><a href="#"><img src="../../assets/nav-bar/hobby.png" alt="Chat Icon">Hobbies</a></li>
+      <li><a href="#"><img src="../../assets/nav-bar/archives.png" alt="archives Icon">Gallery</a></li>
+      <li><a href="#"><img src="../../assets/nav-bar/cat.png" alt="kitty Icon">Kitty</a></li>
+      <li><a href="../../personal/boyfriend/index.html"><img src="../../assets/nav-bar/more.png">Boyfriend diary</a></li>
     </ul>
     </div>
     <div class="nav2-blur-overlay" onclick="closeNav2Sidebar()"></div>
     <button id="nav2-sidebar-toggle"></button>
   </div>
-<script src="../main-music-player/music-player.js"></script>
+<script src="../../main-music-player/music-player.js"></script>
 
  <!--sound effect i decided to add in the last moment lol-->
   <script>
@@ -287,7 +288,7 @@ updateClock();
             
             imageElement.addEventListener("click", () => {
 
-                const soundEffect = new Audio("../assets/sound-effects/pien.mp3");
+                const soundEffect = new Audio("../../assets/sound-effects/pien.mp3");
 
   
                 soundEffect.play().catch(error => console.error("Error playing sound:", error));
@@ -304,9 +305,9 @@ updateClock();
   </script>
 <!-- js :3 -->
 <script type="text/javascript" src= "background-sound.js"></script>
-<script type="text/javascript" src="../nav bar.js"></script>
+<script type="text/javascript" src="../../nav bar.js"></script>
 <script type="text/javascript" src="friends-list.js"></script>
-<script type="text/javascript" src="personal-notification-system.js"></script>
+<script type="text/javascript" src="../personal-notification-system.js"></script>
 </body>
 
 </html>

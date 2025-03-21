@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'departure-mono';
-    src: url('../assets/fonts/DepartureMono-Regular.woff') format('woff');
+    src: url('../../assets/fonts/DepartureMono-Regular.woff') format('woff');
 }
 
 #digital-clock {
@@ -47,7 +47,7 @@
 }
 
 .container {
-    background-image: url('../assets/about-me/journal.png');
+    background-image: url('../../assets/about-me/journal.png');
     background-size: cover;
     position: absolute;
     width: 1270px;
@@ -108,7 +108,7 @@
 
 .header {
     background-color: rgba(255, 255, 255, 0);
-    background-image: url("../assets/banners/06.PNG");
+    background-image: url("../../assets/banners/06.PNG");
     background-size: cover;
     background-repeat: no-repeat;
     width: 93%;

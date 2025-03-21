@@ -9,30 +9,30 @@ function createMenuPanel() {
     
     const gifElement = document.createElement('img');
     gifElement.className = 'menu-gif';
-    gifElement.src = '../assets/gifs/sugar-star-cookie-run.gif';
+    gifElement.src = '../../assets/gifs/sugar-star-cookie-run.gif';
     gifElement.alt = 'Star Cookie';
     
     const buttonContainer = document.createElement('div');
     buttonContainer.className = 'menu-nav-buttons';
     
     const navButton1 = document.createElement('a');
-    navButton1.href = '../stellar-hunter/encyclopedia.html';
+    navButton1.href = '../../stellar-hunter/encyclopedia.html';
     const navImage1 = document.createElement('img');
-    navImage1.src = '../assets/buttons/encyclopedia.png';
+    navImage1.src = '../../assets/buttons/encyclopedia.png';
     navImage1.alt = 'Navigation 1';
     navButton1.appendChild(navImage1);
     
     const navButton2 = document.createElement('a');
-    navButton2.href = '../stellar-hunter/album.html';
+    navButton2.href = '../../stellar-hunter/album.html';
     const navImage2 = document.createElement('img');
-    navImage2.src = '../assets/buttons/album.png';
+    navImage2.src = '../../assets/buttons/album.png';
     navImage2.alt = 'Navigation 2';
     navButton2.appendChild(navImage2);
     
     buttonContainer.appendChild(navButton1);
     buttonContainer.appendChild(navButton2);
     
-    const audio = new Audio('../assets/sound-effects/mystical-chime.mp3');
+    const audio = new Audio('../../assets/sound-effects/mystical-chime.mp3');
     
     const menuPanel = document.createElement('div');
     menuPanel.className = 'menu-panel';

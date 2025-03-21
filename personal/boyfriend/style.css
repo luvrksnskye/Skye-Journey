@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'departure-mono';
-    src: url('../assets/fonts/DepartureMono-Regular.woff') format('woff');
+    src: url('../../assets/fonts/DepartureMono-Regular.woff') format('woff');
 }
 @font-face {
     font-family: 'genshin impact';
-    src: url('../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+    src: url('../../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
 }
 
 /* Background */
@@ -62,12 +62,12 @@ table {
 }
 @font-face {
     font-family: din pro;
-    src: url(../assets/fonts/DIN.otf)
+    src: url(../../assets/fonts/DIN.otf)
 }
 
 @font-face {
     font-family: kawaii;
-    src: url(../assets/fonts/KTEGAKI.ttf)
+    src: url(../../assets/fonts/KTEGAKI.ttf)
 }
 
 .sticker-container {
@@ -266,7 +266,7 @@ body p+p {
     width: 100vw;
     display: flex;
     justify-content: center;
-    background: url(../assets/hobonichi.png)50%/contain no-repeat
+    background: url(../../assets/hobonichi.png)50%/contain no-repeat
 }
 
 @media screen and (max-width: 768px) {

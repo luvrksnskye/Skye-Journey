@@ -134,7 +134,7 @@
     function createToggleButton() {
       const button = document.createElement('button');
       button.className = 'myApp-toggle-button';
-      button.innerHTML = `<img src="../assets/buttons-icons/Phone App_Missions.png" alt="Progress">`;
+      button.innerHTML = `<img src="../../assets/buttons-icons/Phone App_Missions.png" alt="Progress">`;
       button.addEventListener('click', toggleProgressBar);
       document.body.appendChild(button);
     }
@@ -217,7 +217,7 @@
     createToggleButton();
     createBlurOverlay();
     
-    fetch('../credits/stars.json')
+    fetch('../filesystem/credits/stars.json')
       .then(response => response.json())
       .then(jsonData => {
         data = jsonData;
