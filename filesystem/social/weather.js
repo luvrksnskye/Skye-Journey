@@ -1,19 +1,8 @@
-// Function to fetch and display weather data without API key
+// Function to fetch and display weather data using Open-Meteo API
 const fetchWeather = (latitude, longitude) => {
-  const url = `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&current_weather=true`;
 
   fetch(url)
-    .then(response => response.json())
-    .then(locations => {
-      if (locations.length === 0) {
-        throw new Error('Location not found!');
-      }
-
-      const locationId = locations[0].woeid;  // woeid is the unique location identifier
-      const weatherUrl = `https://www.metaweather.com/api/location/${locationId}/`;
-
-      return fetch(weatherUrl);
-    })
     .then(response => response.json())
     .then(data => {
       const weatherBox = document.querySelector('.weather-box');
@@ -23,45 +12,110 @@ const fetchWeather = (latitude, longitude) => {
       const humidity = document.querySelector('.info-humidity span');
       const wind = document.querySelector('.info-wind span');
 
-      // Use the current day's weather
-      const weatherData = data.consolidated_weather[0];
+      // Get current weather data
+      const currentTemp = data.current_weather.temperature;
+      const currentWeatherCode = data.current_weather.weathercode;
+      const currentWindSpeed = data.current_weather.windspeed;
+      
+      // For humidity, we need to find the current hour's data
+      const currentTime = new Date(data.current_weather.time);
+      const hourIndex = data.hourly.time.findIndex(time => 
+        new Date(time).getHours() === currentTime.getHours() && 
+        new Date(time).getDate() === currentTime.getDate()
+      );
+      
+      const currentHumidity = data.hourly.relative_humidity_2m[hourIndex];
 
-      const weatherMap = {
-        Clear: '../../assets/skye/clear.png',
-        Rain: '../../assets/skye/rain.png',
-        Snow: '../../assets/skye/snow.png',
-        Clouds: '../../assets/skye/cloud.png',
-        Haze: '../../assets/skye/mist.png'
+      // Map weather codes to descriptions and images
+      // Weather code mapping based on WMO standards used by Open-Meteo
+      const weatherDescriptions = {
+        0: "Clear sky",
+        1: "Mainly clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+        45: "Fog",
+        48: "Depositing rime fog",
+        51: "Light drizzle",
+        53: "Moderate drizzle",
+        55: "Dense drizzle",
+        56: "Light freezing drizzle",
+        57: "Dense freezing drizzle",
+        61: "Slight rain",
+        63: "Moderate rain",
+        65: "Heavy rain",
+        66: "Light freezing rain",
+        67: "Heavy freezing rain",
+        71: "Slight snow fall",
+        73: "Moderate snow fall",
+        75: "Heavy snow fall",
+        77: "Snow grains",
+        80: "Slight rain showers",
+        81: "Moderate rain showers",
+        82: "Violent rain showers",
+        85: "Slight snow showers",
+        86: "Heavy snow showers",
+        95: "Thunderstorm",
+        96: "Thunderstorm with slight hail",
+        99: "Thunderstorm with heavy hail"
       };
 
-      let weatherImage;
-      if (data.weather && data.weather.length > 0) {
-        weatherImage = weatherMap[data.weather[0].main] || '../../assets/skye/clear.png';
-      } else {
-        weatherImage = '../../assets/skye/clear.png';
-      }
+      // Map weather codes to image paths
+      const weatherMap = {
+        0: '../../assets/skye/clear.png',     // Clear sky
+        1: '../../assets/skye/clear.png',     // Mainly clear
+        2: '../../assets/skye/cloud.png',     // Partly cloudy
+        3: '../../assets/skye/cloud.png',     // Overcast
+        45: '../../assets/skye/mist.png',     // Fog
+        48: '../../assets/skye/mist.png',     // Rime fog
+        51: '../../assets/skye/rain.png',     // Light drizzle
+        53: '../../assets/skye/rain.png',     // Moderate drizzle
+        55: '../../assets/skye/rain.png',     // Dense drizzle
+        56: '../../assets/skye/rain.png',     // Light freezing drizzle
+        57: '../../assets/skye/rain.png',     // Dense freezing drizzle
+        61: '../../assets/skye/rain.png',     // Slight rain
+        63: '../../assets/skye/rain.png',     // Moderate rain
+        65: '../../assets/skye/rain.png',     // Heavy rain
+        66: '../../assets/skye/rain.png',     // Light freezing rain
+        67: '../../assets/skye/rain.png',     // Heavy freezing rain
+        71: '../../assets/skye/snow.png',     // Slight snow fall
+        73: '../../assets/skye/snow.png',     // Moderate snow fall
+        75: '../../assets/skye/snow.png',     // Heavy snow fall
+        77: '../../assets/skye/snow.png',     // Snow grains
+        80: '../../assets/skye/rain.png',     // Slight rain showers
+        81: '../../assets/skye/rain.png',     // Moderate rain showers
+        82: '../../assets/skye/rain.png',     // Violent rain showers
+        85: '../../assets/skye/snow.png',     // Slight snow showers
+        86: '../../assets/skye/snow.png',     // Heavy snow showers
+        95: '../../assets/skye/rain.png',     // Thunderstorm
+        96: '../../assets/skye/rain.png',     // Thunderstorm with slight hail
+        99: '../../assets/skye/rain.png',     // Thunderstorm with heavy hail
+      };
+
+      // Get weather description and image
+      const weatherDescription = weatherDescriptions[currentWeatherCode] || "Unknown";
+      const weatherImage = weatherMap[currentWeatherCode] || '../../assets/skye/clear.png';
 
       // Messages depending on temperature
       let tempMessage;
-      if (weatherData.the_temp < -20) {
+      if (currentTemp < -20) {
         tempMessage = 'Extremely cold! Stay warm and safe!';
-      } else if (weatherData.the_temp < -10) {
+      } else if (currentTemp < -10) {
         tempMessage = 'Very cold! Grab a thick coat and gloves!';
-      } else if (weatherData.the_temp < 0) {
+      } else if (currentTemp < 0) {
         tempMessage = 'Brrr, it\'s freezing! Stay warm!';
-      } else if (weatherData.the_temp < 5) {
+      } else if (currentTemp < 5) {
         tempMessage = 'It\'s chilly, grab a light jacket!';
-      } else if (weatherData.the_temp < 10) {
+      } else if (currentTemp < 10) {
         tempMessage = 'It\'s a bit cool, perfect for a walk!';
-      } else if (weatherData.the_temp < 15) {
+      } else if (currentTemp < 15) {
         tempMessage = 'Mild and pleasant, enjoy the day!';
-      } else if (weatherData.the_temp < 20) {
+      } else if (currentTemp < 20) {
         tempMessage = 'Perfect weather, not too hot or cold!';
-      } else if (weatherData.the_temp < 25) {
+      } else if (currentTemp < 25) {
         tempMessage = 'Warm and sunny, great for outdoor activities!';
-      } else if (weatherData.the_temp < 30) {
+      } else if (currentTemp < 30) {
         tempMessage = 'It\'s getting hot, stay hydrated!';
-      } else if (weatherData.the_temp < 35) {
+      } else if (currentTemp < 35) {
         tempMessage = 'Very hot! Stay cool and take breaks!';
       } else {
         tempMessage = 'Extremely hot! Stay safe and indoors!';
@@ -70,11 +124,11 @@ const fetchWeather = (latitude, longitude) => {
       // Update UI elements
       const image = weatherBox.querySelector('img');
       image.src = weatherImage;
-      description.innerHTML = weatherData.weather_state_name;
+      description.innerHTML = weatherDescription;
       customMessage.innerHTML = tempMessage;
-      temperature.innerHTML = `${parseInt(weatherData.the_temp)}<span>°C</span>`;
-      humidity.innerHTML = `${weatherData.humidity}%`;
-      wind.innerHTML = `${weatherData.wind_speed} m/s`;
+      temperature.innerHTML = `${Math.round(currentTemp)}<span>°C</span>`;
+      humidity.innerHTML = `${Math.round(currentHumidity)}%`;
+      wind.innerHTML = `${currentWindSpeed} m/s`;
 
       // Show weather details
       weatherBox.style.display = 'block';
