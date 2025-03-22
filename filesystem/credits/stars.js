@@ -179,7 +179,7 @@ const zodiacPeriods = [
 let data;
 
 // Load the stars JSON data
-fetch('../../credits/stars.json')
+fetch('stars.json')
   .then((response) => response.json())
   .then((starsData) => {
     data = starsData;
