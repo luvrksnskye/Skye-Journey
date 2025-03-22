@@ -8,63 +8,72 @@ const currentTimeEl = document.querySelector('.current-time');
 const durationEl = document.querySelector('.duration');
 const visualizerBars = document.querySelectorAll('.visualizer-bar');
 
-// Playlist configuration
+// Base path configuration - this makes paths work from any location
+const basePath = (() => {
+    // Get the base URL of your site
+    const baseURL = window.location.origin;
+    
+    // Define the music directory path relative to the root
+    return `${baseURL}/intro-music/`;
+})();
+
+// Playlist configuration with absolute paths
 const playlist = [
-    '../intro-music/This Side Of Paradise.mp3',
-    '../intro-music/The Big Sleep.mp3',
-    '../intro-music/Realitätsprinzip.mp3',
-    '../intro-music/Dreamwalker.mp3',
-    '../intro-music/Light Showers.mp3',
-    '../intro-music/Waltzing in the Rain.mp3',
-    '../intro-music/The Vault.mp3',
-    '../intro-music/Attachments.mp3',
-    '../intro-music/Flight.mp3',
-    "../intro-music/Dreams' Swirling Whispers.mp3",
-    "../intro-music/Coruscating Street.mp3",
-    "../intro-music/Fountain of Belleau.mp3",
-    "../intro-music/Equation.mp3",
-    "../intro-music/Ballad of Many Waters.mp3",
-    "../intro-music/Dream Express.mp3",
-    "../intro-music/Pluie sur la ville.mp3",
-    "../intro-music/Nocturnal Illumination.mp3",
-    "../intro-music/Quand la lumiere resplendira.mp3",
-    "../intro-music/La nuit silencieuse et paisible.mp3",
-    "../intro-music/Que le vent soit doux.mp3",
-    "../intro-music/Anyone Can Cook.mp3",
-    "../intro-music/Luminescence of Eventide.mp3",
-    "../intro-music/Le Souvenir avec le crepuscule.mp3",
-    "../intro-music/French Kiss.mp3",
-    "../intro-music/Joie De Vivre.mp3",
-    "../intro-music/Ratatouille Main Theme.mp3",
-    "../intro-music/Claire de Lune.mp3",
-    "../intro-music/Ballad Du Paris.mp3",
-    "../intro-music/Julia's Theme.mp3",
-    "../intro-music/Fables About the Stars.mp3",
-    "../intro-music/Comet Observatory.mp3",
-    "../intro-music/Star Chance.mp3",
-    "../intro-music/To the Gateway.mp3",
-    "../intro-music/Space Fantasy.mp3",
-    "../intro-music/Star Festival.mp3",
-    "../intro-music/Space Junk Galaxy.mp3",
-    "../intro-music/Dawn  (A New Morning).mp3",
-    "../intro-music/Suis-moi.mp3",
-    "../intro-music/A Sweet Smile.mp3",
-    "../intro-music/Moonlight in Mondstadt.mp3",
-    "../intro-music/Midnight in Mondstadt.mp3",
-    "../intro-music/Mondstadt Starlit.mp3",
-    "../intro-music/Pure Sky.mp3",
-    "../intro-music/Dawn Winery.mp3",
-    "../intro-music/Cold Night.mp3",
-    '../intro-music/Lily-Pads.mp3',
-    '../intro-music/Kelp-Caves.mp3',
-    '../intro-music/Below-Zero.mp3',
-    '../intro-music/Twisty-Bridges.mp3',
-    '../intro-music/Arctic-Peeper.mp3',
-    '../intro-music/Arc-Lights.mp3',
-    '../intro-music/A-Thousand-Strings.mp3',
-    '../intro-music/A-Continuous-Thrum.mp3',
-    '../intro-music/Into-the-Unknown.mp3',
-    '../intro-music/Salutations.mp3'
+    'This Side Of Paradise.mp3',
+    'The Big Sleep.mp3',
+    'Realitätsprinzip.mp3',
+    'Dreamwalker.mp3',
+    'Light Showers.mp3',
+    'Waltzing in the Rain.mp3',
+    'The Vault.mp3',
+    'Attachments.mp3',
+    'Flight.mp3',
+    "Dreams' Swirling Whispers.mp3",
+    "Coruscating Street.mp3",
+    "Fountain of Belleau.mp3",
+    "Equation.mp3",
+    "Ballad of Many Waters.mp3",
+    "Dream Express.mp3",
+    "Pluie sur la ville.mp3",
+    "Nocturnal Illumination.mp3",
+    "Quand la lumiere resplendira.mp3",
+    "La nuit silencieuse et paisible.mp3",
+    "Que le vent soit doux.mp3",
+    "Anyone Can Cook.mp3",
+    "Luminescence of Eventide.mp3",
+    "Le Souvenir avec le crepuscule.mp3",
+    "French Kiss.mp3",
+    "Joie De Vivre.mp3",
+    "Ratatouille Main Theme.mp3",
+    "Claire de Lune.mp3",
+    "Ballad Du Paris.mp3",
+    "Julia's Theme.mp3",
+    "Fables About the Stars.mp3",
+    "Comet Observatory.mp3",
+    "Star Chance.mp3",
+    "To the Gateway.mp3",
+    "Space Fantasy.mp3",
+    "Star Festival.mp3",
+    "Space Junk Galaxy.mp3",
+    "Dawn  (A New Morning).mp3",
+    "Suis-moi.mp3",
+    "A Sweet Smile.mp3",
+    "Moonlight in Mondstadt.mp3",
+    "Midnight in Mondstadt.mp3",
+    "Mondstadt Starlit.mp3",
+    "Pure Sky.mp3",
+    "Dawn Winery.mp3",
+    "Cold Night.mp3",
+    'Lily-Pads.mp3',
+    'Kelp-Caves.mp3',
+    'Below-Zero.mp3',
+    'Twisty-Bridges.mp3',
+    'Arctic-Peeper.mp3',
+    'Arc-Lights.mp3',
+    'A-Thousand-Strings.mp3',
+    'A-Continuous-Thrum.mp3',
+    'Into-the-Unknown.mp3',
+    'Salutations.mp3'
 ];
 
 // Initialize audio state from localStorage or default values
@@ -72,158 +81,187 @@ let currentTrack = parseInt(localStorage.getItem('currentTrack')) || 0;
 let currentTime = parseFloat(localStorage.getItem('currentTime')) || 0;
 let isPlaying = JSON.parse(localStorage.getItem('isPlaying')) || false;
 
-const audio = new Audio(playlist[currentTrack]);
+// Function to get full path for a track
+function getTrackPath(trackName) {
+    return `${basePath}${encodeURIComponent(trackName)}`;
+}
+
+// Initialize with the correct path
+const audio = new Audio(getTrackPath(playlist[currentTrack]));
 audio.preload = "auto"; // Preload audio for smoother transitions
 audio.autoplay = true; // Autoplay enabled
 audio.loop = false; // Individual tracks don't loop, but playlist will
 audio.volume = 0.2;
 
-// "tag" inside player
-const cornerTag = document.getElementById('cornerTag');
+// Function to format time in MM:SS format
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+}
 
-// Initialize player state
-function initializePlayer() {
-    // Set initial time if resuming and also low volume lol
-    audio.volume = 0.2;
-    audio.currentTime = currentTime;
-    
-    // Autoplay if it was playing before
-    if (isPlaying) {
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Autoplay prevented:", error);
-                isPlaying = false;
-                updatePlayButton();
-            });
-        }
+// Function to update progress bar and time display
+function updateProgress() {
+    if (audio.duration) {
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        durationEl.textContent = formatTime(audio.duration);
+        
+        // Save current state to localStorage
+        localStorage.setItem('currentTime', audio.currentTime);
     }
-    
-    // Save state periodically
-    setInterval(savePlayerState, 1000);
 }
 
-// Save player state to localStorage
-function savePlayerState() {
-    localStorage.setItem('currentTrack', currentTrack);
-    localStorage.setItem('currentTime', audio.currentTime);
-    localStorage.setItem('isPlaying', isPlaying);
+// Function to update play/pause button state
+function updatePlayButton() {
+    playButton.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+    localStorage.setItem('isPlaying', JSON.stringify(isPlaying));
 }
 
-// Toggle play/pause
+// Function to update visualizer - using CSS animations instead of JS height changes
+function updateVisualizer() {
+    visualizerBars.forEach(bar => {
+        bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
+    });
+}
+
+// Function to handle play/pause
 function togglePlay() {
     if (isPlaying) {
         audio.pause();
     } else {
         audio.play();
     }
+    isPlaying = !isPlaying;
+    updatePlayButton();
+    updateVisualizer();
 }
 
-// Update the play button icon
-function updatePlayButton() {
-    playButton.innerHTML = isPlaying ? 
-        '<i class="fas fa-pause"></i>' : 
-        '<i class="fas fa-play"></i>';
-}
-
-// Visualizer animation
-function toggleVisualizer(playing) {
-    visualizerBars.forEach((bar) => {
-        bar.style.animationPlayState = playing ? 'running' : 'paused';
-    });
-}
-
-// Play next track
-function playNext() {
-    currentTrack = (currentTrack + 1) % playlist.length;
-    loadAndPlayTrack();
-}
-
-// Play previous track
-function playPrev() {
-    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-    loadAndPlayTrack();
-}
-
-// Load and play track
-function loadAndPlayTrack() {
-    const wasPlaying = true; // Always autoplay on track change
-    audio.src = playlist[currentTrack];
-    audio.currentTime = 0; // Reset time for the new track
-    if (wasPlaying) {
-        audio.play().catch(error => console.log("Error playing track:", error));
+// Function to load and play a track
+function loadTrack(trackIndex) {
+    if (trackIndex < 0) trackIndex = playlist.length - 1;
+    if (trackIndex >= playlist.length) trackIndex = 0;
+    
+    currentTrack = trackIndex;
+    localStorage.setItem('currentTrack', currentTrack);
+    
+    audio.src = getTrackPath(playlist[currentTrack]);
+    audio.currentTime = 0;
+    localStorage.setItem('currentTime', 0);
+    
+    if (isPlaying) {
+        audio.play();
     }
-    savePlayerState();
 }
 
-// Event Listeners
-playButton.addEventListener('click', togglePlay);
-nextButton.addEventListener('click', playNext);
-prevButton.addEventListener('click', playPrev);
+// Function to play next track
+function playNext() {
+    loadTrack(currentTrack + 1);
+}
 
-// Audio event listeners
+// Function to play previous track
+function playPrev() {
+    loadTrack(currentTrack - 1);
+}
+
+// Function to seek within a track
+function seek(e) {
+    const seekPosition = (e.offsetX / progressBarContainer.clientWidth);
+    audio.currentTime = seekPosition * audio.duration;
+    updateProgress();
+}
+
+// Initialize player state
+window.addEventListener('DOMContentLoaded', () => {
+    // Set initial audio time
+    audio.currentTime = currentTime;
+    
+    // Update controls based on initial state
+    if (isPlaying) {
+        audio.play();
+    }
+    updatePlayButton();
+    
+    // Initialize visualizer state
+    updateVisualizer();
+});
+
+// Event listeners
+playButton.addEventListener('click', togglePlay);
+prevButton.addEventListener('click', playPrev);
+nextButton.addEventListener('click', playNext);
+progressBarContainer.addEventListener('click', seek);
+
+// Update progress as audio plays
+audio.addEventListener('timeupdate', updateProgress);
+
+// When track ends, play next track
+audio.addEventListener('ended', playNext);
+
+// Handle play state changes
 audio.addEventListener('play', () => {
     isPlaying = true;
     updatePlayButton();
-    toggleVisualizer(true);
-    if (cornerTag) {
-        cornerTag.classList.add('hide');
-    }
-    savePlayerState();
+    updateVisualizer();
 });
 
 audio.addEventListener('pause', () => {
     isPlaying = false;
     updatePlayButton();
-    toggleVisualizer(false);
-    savePlayerState();
+    updateVisualizer();
 });
 
-audio.addEventListener('timeupdate', () => {
-    if (audio.duration) {
-        const progressPercent = (audio.currentTime / audio.duration) * 100;
-        progressBar.style.width = `${progressPercent}%`;
-    }
-    updateCurrentTime();
-    updateDuration();
+// Handle track loading
+audio.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(audio.duration);
 });
 
-audio.addEventListener('ended', () => {
-    playNext(); // Automatically play next track when current one ends
-});
-
-// Seek on progress bar click
-progressBarContainer.addEventListener('click', (e) => {
-    const width = progressBarContainer.clientWidth;
-    const clickX = e.offsetX;
-    const duration = audio.duration;
-    if (duration) {
-        audio.currentTime = (clickX / width) * duration;
+// Add keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlay();
+    } else if (e.code === 'ArrowLeft') {
+        playPrev();
+    } else if (e.code === 'ArrowRight') {
+        playNext();
     }
 });
 
-// Time display functions
-function updateCurrentTime() {
-    const minutes = Math.floor(audio.currentTime / 60);
-    const seconds = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
-    currentTimeEl.textContent = `${minutes}:${seconds}`;
+// Create a shuffle function
+function shufflePlaylist() {
+    const currentSong = playlist[currentTrack];
+    
+    // Shuffle algorithm (Fisher-Yates)
+    for (let i = playlist.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [playlist[i], playlist[j]] = [playlist[j], playlist[i]];
+    }
+    
+    // Find the current song in the shuffled playlist
+    currentTrack = playlist.indexOf(currentSong);
+    localStorage.setItem('currentTrack', currentTrack);
 }
 
-function updateDuration() {
-    if (audio.duration) {
-        const minutes = Math.floor(audio.duration / 60);
-        const seconds = Math.floor(audio.duration % 60).toString().padStart(2, '0');
-        durationEl.textContent = `${minutes}:${seconds}`;
-    }
-}
-
-// Handle page visibility changes
+// Handle page visibility changes to conserve resources
 document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        savePlayerState();
+    // No need for interval management anymore
+    if (!document.hidden && isPlaying) {
+        updateVisualizer();
     }
 });
 
-// Initialize the player when the page loads
-initializePlayer();
-
+// Add track hover effect
+const trackListItems = document.querySelectorAll('.track-list-item');
+if (trackListItems.length > 0) {
+    trackListItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentTrack = index;
+            loadTrack(currentTrack);
+            if (!isPlaying) {
+                togglePlay();
+            }
+        });
+    });
+}

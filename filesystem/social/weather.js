@@ -11,28 +11,29 @@ const fetchWeather = (latitude, longitude) => {
       return response.json();
     })
     .then(data => {
-      // Handle the JSON response here
+
       const weatherBox = document.querySelector('.weather-box');
       const temperature = weatherBox.querySelector('.temperature');
+      const description = weatherBox.querySelector('.decription');
       const customMessage = weatherBox.querySelector('.custom-message');
-      const humidity = document.querySelector('.humidity span');
-      const wind = document.querySelector('.wind span');
+      const humidity = document.querySelector('.info-humidity span');
+      const wind = document.querySelector('.info-wind span');
 
-      // Map weather conditions to images
-      const weatherMap = {
-        Clear: '../assets/skye/clear.png',
-        Rain: '../assets/skye/rain.png',
-        Snow: '../assets/skye/snow.png',
-        Clouds: '../assets/skye/cloud.png',
-        Haze: '../assets/skye/mist.png'
-      };
 
-      let weatherImage;
-      if (data.weather && data.weather.length > 0) {
-        weatherImage = weatherMap[data.weather[0].main] || '../assets/skye/clear.png';
-      } else {
-        weatherImage = '../assets/skye/clear.png';
-      }
+         const weatherMap = {
+          Clear: '../../assets/skye/clear.png',
+          Rain: '../../assets/skye/rain.png',
+          Snow: '../../assets/skye/snow.png',
+          Clouds: '../../assets/skye/cloud.png',
+          Haze: '../../assets/skye/mist.png'
+        };
+  
+        let weatherImage;
+        if (data.weather && data.weather.length > 0) {
+          weatherImage = weatherMap[data.weather[0].main] || '../../assets/skye/clear.png';
+        } else {
+          weatherImage = '../../assets/skye/clear.png';
+        }
 
       // Messages depending on temperature
       let tempMessage;
@@ -60,25 +61,26 @@ const fetchWeather = (latitude, longitude) => {
         tempMessage = 'Extremely hot! Stay safe and indoors!';
       }
 
+
       const image = weatherBox.querySelector('img');
       image.src = weatherImage;
+      description.innerHTML = data.weather[0].description;
       customMessage.innerHTML = tempMessage;
       temperature.innerHTML = `${parseInt(data.main.temp)}<span>°C</span>`;
       humidity.innerHTML = `${data.main.humidity}%`;
-      wind.innerHTML = `${data.wind.speed} m/s`;
+      wind.innerHTML = `${data.wind.speed} Km/h`;
 
-      weatherBox.style.display = '';
-      document.querySelector('.weather-details').style.display = '';
+      // Show weather details
+      weatherBox.style.display = 'block';
+      document.querySelector('.weather-details').style.display = 'flex';
       weatherBox.classList.add('fadeIn');
       document.querySelector('.weather-details').classList.add('fadeIn');
-      document.querySelector('#forecast-window-3 .container').style.height = '590px';
     })
     .catch(error => {
       console.error('Error fetching weather data:', error);
-      document.querySelector('#forecast-window-3 .not-found').style.display = 'block';
-      document.querySelector('#forecast-window-3 .not-found').classList.add('fadeIn');
+      document.querySelector('.weather-box').innerHTML = '<p class="error-message">Weather data not available</p>';
     });
 };
 
-// Get the weather data for Richmond, Indiana, USA
+// Fetch weather data for default location
 fetchWeather(39.8283, -84.8903);
