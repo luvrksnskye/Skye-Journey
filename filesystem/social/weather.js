@@ -1,17 +1,21 @@
-// Function to fetch and display weather data
+// Function to fetch and display weather data without API key
 const fetchWeather = (latitude, longitude) => {
-  const APIKey = '9c8e485656ec0f2b1f01e48f6367b40f';
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`;
+  const url = `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`;
 
   fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+    .then(response => response.json())
+    .then(locations => {
+      if (locations.length === 0) {
+        throw new Error('Location not found!');
       }
-      return response.json();
-    })
-    .then(data => {
 
+      const locationId = locations[0].woeid;  // woeid is the unique location identifier
+      const weatherUrl = `https://www.metaweather.com/api/location/${locationId}/`;
+
+      return fetch(weatherUrl);
+    })
+    .then(response => response.json())
+    .then(data => {
       const weatherBox = document.querySelector('.weather-box');
       const temperature = weatherBox.querySelector('.temperature');
       const description = weatherBox.querySelector('.decription');
@@ -19,56 +23,58 @@ const fetchWeather = (latitude, longitude) => {
       const humidity = document.querySelector('.info-humidity span');
       const wind = document.querySelector('.info-wind span');
 
+      // Use the current day's weather
+      const weatherData = data.consolidated_weather[0];
 
-         const weatherMap = {
-          Clear: '../../assets/skye/clear.png',
-          Rain: '../../assets/skye/rain.png',
-          Snow: '../../assets/skye/snow.png',
-          Clouds: '../../assets/skye/cloud.png',
-          Haze: '../../assets/skye/mist.png'
-        };
-  
-        let weatherImage;
-        if (data.weather && data.weather.length > 0) {
-          weatherImage = weatherMap[data.weather[0].main] || '../../assets/skye/clear.png';
-        } else {
-          weatherImage = '../../assets/skye/clear.png';
-        }
+      const weatherMap = {
+        Clear: '../../assets/skye/clear.png',
+        Rain: '../../assets/skye/rain.png',
+        Snow: '../../assets/skye/snow.png',
+        Clouds: '../../assets/skye/cloud.png',
+        Haze: '../../assets/skye/mist.png'
+      };
+
+      let weatherImage;
+      if (data.weather && data.weather.length > 0) {
+        weatherImage = weatherMap[data.weather[0].main] || '../../assets/skye/clear.png';
+      } else {
+        weatherImage = '../../assets/skye/clear.png';
+      }
 
       // Messages depending on temperature
       let tempMessage;
-      if (data.main.temp < -20) {
+      if (weatherData.the_temp < -20) {
         tempMessage = 'Extremely cold! Stay warm and safe!';
-      } else if (data.main.temp < -10) {
+      } else if (weatherData.the_temp < -10) {
         tempMessage = 'Very cold! Grab a thick coat and gloves!';
-      } else if (data.main.temp < 0) {
+      } else if (weatherData.the_temp < 0) {
         tempMessage = 'Brrr, it\'s freezing! Stay warm!';
-      } else if (data.main.temp < 5) {
+      } else if (weatherData.the_temp < 5) {
         tempMessage = 'It\'s chilly, grab a light jacket!';
-      } else if (data.main.temp < 10) {
+      } else if (weatherData.the_temp < 10) {
         tempMessage = 'It\'s a bit cool, perfect for a walk!';
-      } else if (data.main.temp < 15) {
+      } else if (weatherData.the_temp < 15) {
         tempMessage = 'Mild and pleasant, enjoy the day!';
-      } else if (data.main.temp < 20) {
+      } else if (weatherData.the_temp < 20) {
         tempMessage = 'Perfect weather, not too hot or cold!';
-      } else if (data.main.temp < 25) {
+      } else if (weatherData.the_temp < 25) {
         tempMessage = 'Warm and sunny, great for outdoor activities!';
-      } else if (data.main.temp < 30) {
+      } else if (weatherData.the_temp < 30) {
         tempMessage = 'It\'s getting hot, stay hydrated!';
-      } else if (data.main.temp < 35) {
+      } else if (weatherData.the_temp < 35) {
         tempMessage = 'Very hot! Stay cool and take breaks!';
       } else {
         tempMessage = 'Extremely hot! Stay safe and indoors!';
       }
 
-
+      // Update UI elements
       const image = weatherBox.querySelector('img');
       image.src = weatherImage;
-      description.innerHTML = data.weather[0].description;
+      description.innerHTML = weatherData.weather_state_name;
       customMessage.innerHTML = tempMessage;
-      temperature.innerHTML = `${parseInt(data.main.temp)}<span>°C</span>`;
-      humidity.innerHTML = `${data.main.humidity}%`;
-      wind.innerHTML = `${data.wind.speed} Km/h`;
+      temperature.innerHTML = `${parseInt(weatherData.the_temp)}<span>°C</span>`;
+      humidity.innerHTML = `${weatherData.humidity}%`;
+      wind.innerHTML = `${weatherData.wind_speed} m/s`;
 
       // Show weather details
       weatherBox.style.display = 'block';
@@ -82,5 +88,5 @@ const fetchWeather = (latitude, longitude) => {
     });
 };
 
-// Fetch weather data for default location
-fetchWeather(39.8283, -84.8903);
+// Fetch weather data for a location (example: latitude and longitude for New York)
+fetchWeather(40.730610, -73.935242);
