@@ -16,7 +16,7 @@ function createMenuPanel() {
     buttonContainer.className = 'menu-nav-buttons';
     
     const navButton1 = document.createElement('a');
-    navButton1.href = '../../stellar-hunter/encyclopedia.html';
+    navButton1.href = '../../stellar-hunter/index.html';
     const navImage1 = document.createElement('img');
     navImage1.src = '../../assets/buttons/encyclopedia.png';
     navImage1.alt = 'Navigation 1';
