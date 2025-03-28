@@ -11,39 +11,69 @@
   </head>
   <body>
 
-    <p class="title">Find my friends</p>
-    <p class="about">My friends travel in the stars, can you find them?</p>
-    <p class="about">Select a constellation to find and learn about them!</p>
+   <!-- Header with centered floating panel -->
+   <header class="header">
+    <div class="title-panel">
+        <img src="../../assets/panels/friends.png" alt="friends Panel">
+    </div>
+ </header>
 
      		<!-- Music player lol-->
-<div class="music-player">
-    
-  <div class="highlight top-right"></div>
-  <div class="highlight bottom-left"></div>
+         <div class="music-player">
+          <div class="highlight top-right"></div>
+          <div class="highlight bottom-left"></div>
+          
+          <button class="slide-toggle">
+              <i class="fas fa-chevron-down"></i>
+          </button>
+          
+          <div class="corner-tag">Now Playing</div>
+          
+          <div class="player-header">
+              <div class="visualizer">
+                  <div class="visualizer-bar"></div>
+                  <div class="visualizer-bar"></div>
+                  <div class="visualizer-bar"></div>
+                  <div class="visualizer-bar"></div>
+                  <div class="visualizer-bar"></div>
+                  <div class="visualizer-bar"></div>
+                  <div class="visualizer-bar"></div>
+                  <div class="visualizer-bar"></div>
+              </div>
+          </div>
+          
+          <div class="content">
+              <div class="album-art">
+                  <img src="../../assets/sound-effects/rings.svg" alt="Album Art">
+              </div>
+              
+              <div class="song-info">
+                  <h3 class="song-title">Current Song</h3>
+              </div>
+              
+              <div class="progress-container">
+                  <div class="current-time">0:00</div>
+                  <div class="progress-bar">
+                      <div class="progress"></div>
+                  </div>
+                  <div class="duration">0:00</div>
+              </div>
+              
+              <div class="controls">
+                  <button class="control-btn" id="prev">
+                      <i class="fas fa-backward"></i>
+                  </button>
+                  <button class="control-btn" id="play">
+                      <i class="fas fa-play"></i>
+                  </button>
+                  <button class="control-btn" id="next">
+                      <i class="fas fa-forward"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
   
-  <div class="music-info">
-    <div class="visualizer">
-      <div class="visualizer-bar"></div>
-      <div class="visualizer-bar"></div>
-      <div class="visualizer-bar"></div>
-      <div class="visualizer-bar"></div>
-    </div>
-  </div>
-
-  <div class="progress-container">
-    <div class="progress-bar">
-      <div class="progress"></div>
-    </div>
-    <span class="current-time">0:00</span>
-    <span class="duration">3:15</span>
-  </div>
-
-  <div class="controls">
-    <button class="control-btn" id="prev"><i class="fas fa-backward"></i></button>
-    <button class="control-btn" id="play"><i class="fas fa-play"></i></button>
-    <button class="control-btn" id="next"><i class="fas fa-forward"></i></button>
-  </div>
-</div>
+<!---End of the music player :D-->
 <!--Background-->
     <div class="video-background" id="mainBackground">
       <video id="mainVideo" autoplay muted loop>
@@ -56,7 +86,7 @@
 
 <!--FRIENDSSSSS YAYYY-->
  <audio id="background-sound" loop autoplay>
-    <source src="skybgn-stars001.mp3" type="audio/mp3">
+    <source src="../skybgn-stars001.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
@@ -254,28 +284,28 @@ updateClock();
   });
   
   </script>
-  <!--Nav bar-->
-<div id="nav2-wrapper">
-  <div id="nav2-custom-sidebar" class="hidden">
-    <h2>Personal</h2>
-    <ul>
+  
+  <div id="nav2-wrapper">
+    <div id="nav2-custom-sidebar" class="hidden">
+      <h2>Personal</h2>
+      <ul>
       <li><a href="../../home/index.html"><img src="../../assets/nav-bar/home.png" alt="Home Icon">Home</a></li>
       <li><a href="../../personal/#"><img src="../../assets/nav-bar/more.png" alt="about Icon">About me</a></li>
       <li><a href="../../personal/journal/index.html"><img src="../../assets/nav-bar/my-journey.png" alt="diary Icon">Journal</a></li>
       <li><a href="#"><img src="../../assets/nav-bar/music.png" alt="music Icon">Music</a></li>
       <li><a href="#"><img src="../../assets/nav-bar/games.png" alt="games Icon">Video games</a></li>
-      <li><a href="../../personal/friends/#"><img src="../../assets/nav-bar/friends.png" alt="friends Icon">Friends <img src="../../assets/buttons-icons/Phone App_Navigation.png" alt="new symbol"></a></li>
+      <li><a href="#"><img src="../../assets/nav-bar/friends.png" alt="friends Icon">Friends <img src="../../assets/buttons-icons/Phone App_Navigation.png" alt="new symbol"></a></li>
       <li><a href="../../personal/guestbook/index.html"><img src="../../assets/nav-bar/guestbook.png" alt="guestbook Icon">Guestbook</a></li>
       <li><a href="../../personal/#"><img src="../../assets/nav-bar/FAQ.png" alt="faq Icon">FAQ</a></li>
       <li><a href="#"><img src="../../assets/nav-bar/hobby.png" alt="Chat Icon">Hobbies</a></li>
       <li><a href="#"><img src="../../assets/nav-bar/archives.png" alt="archives Icon">Gallery</a></li>
       <li><a href="#"><img src="../../assets/nav-bar/cat.png" alt="kitty Icon">Kitty</a></li>
       <li><a href="../../personal/boyfriend/index.html"><img src="../../assets/nav-bar/more.png">Boyfriend diary</a></li>
-    </ul>
+      </ul>
+      </div>
+      <div class="nav2-blur-overlay" onclick="closeNav2Sidebar()"></div>
+      <button id="nav2-sidebar-toggle"></button>
     </div>
-    <div class="nav2-blur-overlay" onclick="closeNav2Sidebar()"></div>
-    <button id="nav2-sidebar-toggle"></button>
-  </div>
 <script src="../../main-music-player/music-player.js"></script>
 
  <!--sound effect i decided to add in the last moment lol-->
@@ -304,6 +334,7 @@ updateClock();
 
   </script>
 <!-- js :3 -->
+ <script src="info.js"></script>
 <script type="text/javascript" src= "background-sound.js"></script>
 <script type="text/javascript" src="../../nav bar.js"></script>
 <script type="text/javascript" src="friends-list.js"></script>

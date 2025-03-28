@@ -460,3 +460,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #7db8ff;
 }
+
+/* Body Styles */
+body ::selection {
+  background: #91ceff;
+}

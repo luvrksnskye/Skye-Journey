@@ -1,4 +1,6 @@
-// Controls
+const musicPlayer = document.querySelector('.music-player');
+const slideToggle = document.querySelector('.slide-toggle');
+const songTitle = document.querySelector('.song-title');
 const playButton = document.getElementById('play');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
@@ -7,19 +9,29 @@ const progressBarContainer = document.querySelector('.progress-bar');
 const currentTimeEl = document.querySelector('.current-time');
 const durationEl = document.querySelector('.duration');
 const visualizerBars = document.querySelectorAll('.visualizer-bar');
+const cornerTag = document.querySelector('.corner-tag');
+const content = document.querySelector('.content');
+
+// Toggle slide functionality
+slideToggle.addEventListener('click', () => {
+    musicPlayer.classList.toggle('slide-out');
+    if (musicPlayer.classList.contains('slide-out')) {
+        cornerTag.classList.add('hide');
+    } else {
+        cornerTag.classList.remove('hide');
+    }
+});
 
 // Base path configuration - this makes paths work from any location
 const basePath = (() => {
-    // Get the base URL of your site
     const baseURL = window.location.origin;
     
     // Define the music directory path relative to the root
     return `${baseURL}/intro-music/`;
 })();
 
-// Playlist configuration with absolute paths
 const playlist = [
-    'This Side Of Paradise.mp3',
+    'Song of the Welkin Moon.mp3',
     'The Big Sleep.mp3',
     'Realitätsprinzip.mp3',
     'Dreamwalker.mp3',
@@ -89,9 +101,17 @@ function getTrackPath(trackName) {
 // Initialize with the correct path
 const audio = new Audio(getTrackPath(playlist[currentTrack]));
 audio.preload = "auto"; // Preload audio for smoother transitions
-audio.autoplay = true; // Autoplay enabled
+audio.autoplay = false; // Don't autoplay until user interacts
 audio.loop = false; // Individual tracks don't loop, but playlist will
-audio.volume = 0.2;
+audio.volume = 0.4;
+
+// Update song title
+function updateSongTitle() {
+    const currentSong = playlist[currentTrack];
+    // Remove file extension and replace dashes with spaces
+    const formattedTitle = currentSong.replace('.mp3', '').replace(/-/g, ' ');
+    songTitle.textContent = formattedTitle;
+}
 
 // Function to format time in MM:SS format
 function formatTime(seconds) {
@@ -131,11 +151,28 @@ function togglePlay() {
     if (isPlaying) {
         audio.pause();
     } else {
-        audio.play();
+        // Try to play and handle potential browser restrictions
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Playback started successfully
+                isPlaying = true;
+                updatePlayButton();
+                updateVisualizer();
+            }).catch(error => {
+                // Auto-play was prevented
+                console.log("Playback was prevented by the browser:", error);
+                isPlaying = false;
+                updatePlayButton();
+            });
+        } else {
+            // Older browsers may not return a promise
+            isPlaying = true;
+            updatePlayButton();
+            updateVisualizer();
+        }
     }
-    isPlaying = !isPlaying;
-    updatePlayButton();
-    updateVisualizer();
 }
 
 // Function to load and play a track
@@ -146,12 +183,38 @@ function loadTrack(trackIndex) {
     currentTrack = trackIndex;
     localStorage.setItem('currentTrack', currentTrack);
     
+    // Store the previous isPlaying state
+    const wasPlaying = isPlaying;
+    
+    // Reset the audio element with new source
     audio.src = getTrackPath(playlist[currentTrack]);
     audio.currentTime = 0;
     localStorage.setItem('currentTime', 0);
     
-    if (isPlaying) {
-        audio.play();
+    // Update song title
+    updateSongTitle();
+    
+    // If it was playing before or this is called from 'ended' event, play the new track
+    if (wasPlaying) {
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Playback started successfully
+                isPlaying = true;
+                updatePlayButton();
+                updateVisualizer();
+            }).catch(error => {
+                // Auto-play was prevented
+                console.log("Auto-play was prevented by the browser:", error);
+                isPlaying = false;
+                updatePlayButton();
+            });
+        } else {
+            isPlaying = true;
+            updatePlayButton();
+            updateVisualizer();
+        }
     }
 }
 
@@ -177,14 +240,28 @@ window.addEventListener('DOMContentLoaded', () => {
     // Set initial audio time
     audio.currentTime = currentTime;
     
+    // Update song title
+    updateSongTitle();
+    
     // Update controls based on initial state
-    if (isPlaying) {
-        audio.play();
-    }
     updatePlayButton();
     
     // Initialize visualizer state
     updateVisualizer();
+    
+    // Try to play if it was playing before
+    if (isPlaying) {
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // Auto-play was prevented
+                console.log("Auto-play was prevented by the browser:", error);
+                isPlaying = false;
+                updatePlayButton();
+            });
+        }
+    }
 });
 
 // Event listeners
@@ -196,8 +273,11 @@ progressBarContainer.addEventListener('click', seek);
 // Update progress as audio plays
 audio.addEventListener('timeupdate', updateProgress);
 
-// When track ends, play next track
-audio.addEventListener('ended', playNext);
+// When track ends, play next track - THIS IS CRITICAL FOR AUTO PLAY NEXT
+audio.addEventListener('ended', () => {
+    console.log("Track ended, playing next track");
+    playNext();
+});
 
 // Handle play state changes
 audio.addEventListener('play', () => {
@@ -207,9 +287,12 @@ audio.addEventListener('play', () => {
 });
 
 audio.addEventListener('pause', () => {
-    isPlaying = false;
-    updatePlayButton();
-    updateVisualizer();
+    // Only mark as not playing if it's a real pause, not just an ended track
+    if (audio.currentTime < audio.duration - 0.1) {  
+        isPlaying = false;
+        updatePlayButton();
+        updateVisualizer();
+    }
 });
 
 // Handle track loading
@@ -246,22 +329,7 @@ function shufflePlaylist() {
 
 // Handle page visibility changes to conserve resources
 document.addEventListener('visibilitychange', () => {
-    // No need for interval management anymore
     if (!document.hidden && isPlaying) {
         updateVisualizer();
     }
 });
-
-// Add track hover effect
-const trackListItems = document.querySelectorAll('.track-list-item');
-if (trackListItems.length > 0) {
-    trackListItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            currentTrack = index;
-            loadTrack(currentTrack);
-            if (!isPlaying) {
-                togglePlay();
-            }
-        });
-    });
-}

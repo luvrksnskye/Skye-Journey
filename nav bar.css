@@ -15,14 +15,14 @@
     z-index: 100;
     display: none;
     pointer-events: none;
-    }
+}
     
-    #nav2-wrapper .nav2-blur-overlay.active {
+#nav2-wrapper .nav2-blur-overlay.active {
     display: block;
     pointer-events: auto;
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar {
+#nav2-wrapper #nav2-custom-sidebar {
     position: fixed;
     top: 50%;
     left: -200px;
@@ -38,60 +38,64 @@
     transition: left 0.3s ease;
     z-index: 9999;
     pointer-events: none;
-    }
+    overflow-y: auto;
+    max-height: 90vh;
+}
     
-    #nav2-wrapper #nav2-custom-sidebar.hidden {
+#nav2-wrapper #nav2-custom-sidebar.hidden {
     display: none;
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar.active {
-    left: 0; /* Sidebar visible */
+#nav2-wrapper #nav2-custom-sidebar.active {
+    left: 0;
     pointer-events: auto;
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar h2 {
-        font-family: 'departure-mono', monospace;
+#nav2-wrapper #nav2-custom-sidebar h2 {
+    font-family: 'departure-mono', monospace;
     font-size: 18px;
     margin-bottom: 20px;
     font-weight: bold;
     color: white;
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar ul {
+#nav2-wrapper #nav2-custom-sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar ul li {
+#nav2-wrapper #nav2-custom-sidebar ul li {
     margin: 15px 0;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s;
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar ul li:hover {
+#nav2-wrapper #nav2-custom-sidebar ul li:hover {
     transform: translateX(5px);
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar ul li img {
+#nav2-wrapper #nav2-custom-sidebar ul li img {
     width: 20px;
     margin-right: 12px;
-    }
+}
     
-    #nav2-wrapper #nav2-custom-sidebar ul li a {
+#nav2-wrapper #nav2-custom-sidebar ul li a {
     font-family: 'departure-mono', monospace;
     text-decoration: none;
     color: white;
     width: 100%;
-    }
+    font-size: 16px;
+    word-break: break-word;
+}
     
-    #nav2-wrapper #nav2-custom-sidebar ul li:hover a {
+#nav2-wrapper #nav2-custom-sidebar ul li:hover a {
     color: #a6daff;
-    }
+}
     
-    #nav2-wrapper #nav2-sidebar-toggle {
+#nav2-wrapper #nav2-sidebar-toggle {
     position: fixed;
     top: 50%;
     left: 0;
@@ -113,42 +117,79 @@
     width: 50px;
     height: 50px;
     z-index: 99;
-    }
+}
     
-    #nav2-wrapper #nav2-sidebar-toggle.active {
+#nav2-wrapper #nav2-sidebar-toggle.active {
     left: 200px;
-    }
+}
     
-    #nav2-wrapper #nav2-sidebar-toggle.active::after {
+#nav2-wrapper #nav2-sidebar-toggle.active::after {
     transform: rotate(180deg);
-    }
+}
     
-    /* Responsive Media Queries :D*/
-    @media screen and (max-width: 768px) {
+/* Improved Responsive Media Queries */
+@media screen and (max-width: 768px) {
     #nav2-wrapper #nav2-custom-sidebar {
-    width: 250px;
-    top: 0;
-    left: -250px;
-    height: 100%;
-    transform: none;
-    border-radius: 0 10px 10px 0;
-    overflow-y: auto;
+        width: 80%;
+        max-width: 250px;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        transform: none;
+        border-radius: 0 10px 10px 0;
+        overflow-y: auto;
+        padding: 15px;
     }
     
     #nav2-wrapper #nav2-custom-sidebar.active {
-    left: 0;
+        left: 0;
     }
     
     #nav2-wrapper #nav2-sidebar-toggle {
-    top: 20px;
-    right: 20px;
-    left: auto;
-    transform: none;
-    width: 50px;
-    height: 50px;
+        top: 20px;
+        transform: none;
+        width: 40px;
+        height: 40px;
     }
     
     #nav2-wrapper #nav2-sidebar-toggle.active {
-    right: 270px;
+        left: 80%;
+        max-left: 250px;
     }
+    
+    #nav2-wrapper #nav2-custom-sidebar h2 {
+        font-size: 16px;
+        margin-bottom: 15px;
     }
+    
+    #nav2-wrapper #nav2-custom-sidebar ul li {
+        margin: 12px 0;
+    }
+    
+    #nav2-wrapper #nav2-custom-sidebar ul li a {
+        font-size: 14px;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media screen and (max-width: 320px) {
+    #nav2-wrapper #nav2-custom-sidebar {
+        width: 85%;
+        padding: 12px;
+    }
+    
+    #nav2-wrapper #nav2-sidebar-toggle {
+        width: 35px;
+        height: 35px;
+    }
+    
+    #nav2-wrapper #nav2-custom-sidebar h2 {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    
+    #nav2-wrapper #nav2-custom-sidebar ul li img {
+        width: 16px;
+        margin-right: 8px;
+    }
+}

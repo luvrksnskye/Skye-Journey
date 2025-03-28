@@ -372,3 +372,12 @@ div b {
 ::-webkit-scrollbar-thumb:hover {
   background: #7db8ff;
 }
+
+.text-center {
+  text-align: center;
+}
+
+/* Body Styles */
+body ::selection {
+  background: #91ceff;
+}

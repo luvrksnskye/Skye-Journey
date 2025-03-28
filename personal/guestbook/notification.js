@@ -14,7 +14,7 @@ function showImageNotification(imagePath) {
   }
 
   
-  const audio = new Audio('../assets/sound-effects/mystical-chime.mp3');
+  const audio = new Audio('../../assets/sound-effects/mystical-chime.mp3');
   audio.play().catch(err => console.warn('Audio playback failed:', err));
 
   
@@ -39,5 +39,5 @@ function showImageNotification(imagePath) {
 }
 
 
-showImageNotification('../assets/panels/rules-panel.png');
+showImageNotification('../../assets/panels/rules-panel.png');
 

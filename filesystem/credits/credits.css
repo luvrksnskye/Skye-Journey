@@ -219,3 +219,8 @@ html, body {
 .dialogue-text {
     box-sizing: border-box;
 }
+
+/* Body Styles */
+body ::selection {
+  background: #91ceff;
+}

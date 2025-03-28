@@ -204,3 +204,7 @@ color: white;
 	color: white;
 	background-color: #7b9eff;
 }
+/* Body Styles */
+body ::selection {
+  background: #91ceff;
+}

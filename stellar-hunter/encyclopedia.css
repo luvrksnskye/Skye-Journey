@@ -177,3 +177,9 @@
     transition: opacity 0.2s ease;
     font-weight: 200;
 }
+
+/* Body Styles */
+body ::selection {
+    background: #91ceff;
+  }
+  

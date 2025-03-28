@@ -98,61 +98,85 @@
 
 
 
-       <!-- Music player shit-->
-<div class="music-player">
+ <!-- Music player lol-->
+ <div class="music-player">
+  <div class="highlight top-right"></div>
+  <div class="highlight bottom-left"></div>
   
-    <!-- Tag -->
-    <div class="corner-tag" id="cornerTag">play me!</div>
-    
-    <div class="highlight top-right"></div>
-    <div class="highlight bottom-left"></div>
-    
-    <div class="music-info">
+  <button class="slide-toggle">
+      <i class="fas fa-chevron-down"></i>
+  </button>
+  
+  <div class="corner-tag">Now Playing</div>
+  
+  <div class="player-header">
       <div class="visualizer">
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
-        <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
+          <div class="visualizer-bar"></div>
       </div>
-    </div>
-  
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress"></div>
-      </div>
-      <span class="current-time">0:00</span>
-      <span class="duration">3:15</span>
-    </div>
-  
-    <div class="controls">
-      <button class="control-btn" id="prev"><i class="fas fa-backward"></i></button>
-      <button class="control-btn" id="play"><i class="fas fa-play"></i></button>
-      <button class="control-btn" id="next"><i class="fas fa-forward"></i></button>
-    </div>
   </div>
+  
+  <div class="content">
+      <div class="album-art">
+          <img src="../../assets/sound-effects/rings.svg" alt="Album Art">
+      </div>
+      
+      <div class="song-info">
+          <h3 class="song-title">Current Song</h3>
+      </div>
+      
+      <div class="progress-container">
+          <div class="current-time">0:00</div>
+          <div class="progress-bar">
+              <div class="progress"></div>
+          </div>
+          <div class="duration">0:00</div>
+      </div>
+      
+      <div class="controls">
+          <button class="control-btn" id="prev">
+              <i class="fas fa-backward"></i>
+          </button>
+          <button class="control-btn" id="play">
+              <i class="fas fa-play"></i>
+          </button>
+          <button class="control-btn" id="next">
+              <i class="fas fa-forward"></i>
+          </button>
+      </div>
+  </div>
+</div>
+
+<!---End of the music player :D-->
 
   			  <!--Nav bar-->
-<div id="nav2-wrapper">
-	<div id="nav2-custom-sidebar" class="hidden">
-	  <h2>Filesystem</h2>
-	  <ul>
-      <li><a href="../../home/index.html"><img src="../../assets/nav-bar/home.png" alt="Home Icon">Home</a></li>
-      <li><a href="../../filesystem/#"><img src="../../assets/nav-bar/about.png" alt="about Icon">About</a></li>
-      <li><a href="../../filesystem/social/index.html"><img src="../../assets/nav-bar/social.png" alt="diary Icon">Social</a></li>
-      <li><a href="../../filesystem/support/index.html"><img src="../../assets/nav-bar/support.png" alt="music Icon">Support</a></li>
-      <li><a href="../../filesystem/tos/index.html"><img src="../../assets/nav-bar/rules.png" alt="games Icon">Tos <img src="../../assets/buttons-icons/Phone App_Navigation.png" alt="new symbol"></a></li>
-      <li><a href="../../filesystem/#"><img src="../../assets/nav-bar/tools.png" alt="friends Icon">Tools</a></li>
-      <li><a href="../../filesystem/#"><img src="../../assets/nav-bar/blog.png" alt="guestbook Icon">Blog</a></li>
-      <li><a href="../../filesystem/#"><img src="../../assets/nav-bar/resources.png" alt="faq Icon">Resources</a></li>
-      <li><a href="../../filesystem/#"><img src="../../assets/nav-bar/software.png" alt="Chat Icon">Software</a></li>
-      <li><a href="../../filesystem/credits/index.html"><img src="../../assets/nav-bar/credits.png" alt="archives Icon">Credits</a></li>
-      <li><a href="https://trello.com/b/bosL3mrV/skye-workstation-queue"><img src="../../assets/nav-bar/workstation.png" alt="kitty Icon">Workstation</a></li>
-        <li><a href="../../filesystem/#"><img src="../../assets/nav-bar/sitemap.png" alt="kitty Icon">Sitemap</a></li>
-	  </ul>
-	  </div>
-	  <div class="nav2-blur-overlay" onclick="closeNav2Sidebar()"></div>
-	  <button id="nav2-sidebar-toggle"></button>
-	</div>
+          <div id="nav2-wrapper">
+            <div id="nav2-custom-sidebar" class="hidden">
+              <h2>Filesystem</h2>
+              <ul>
+                <li><a href="../../home/index.html"><img src="../../assets/nav-bar/home.png" alt="Home Icon">Home</a></li>
+                <li><a href="#"><img src="../../assets/nav-bar/about.png" alt="about Icon">About</a></li>
+                <li><a href="../../filesystem/social/index.html"><img src="../../assets/nav-bar/social.png" alt="diary Icon">Social</a></li>
+                <li><a href="../../filesystem/support/index.html"><img src="../../assets/nav-bar/support.png" alt="music Icon">Support</a></li>
+                <li><a href="#"><img src="../../assets/nav-bar/rules.png" alt="games Icon">Tos <img src="../../assets/buttons-icons/Phone App_Navigation.png" alt="new symbol"></a></li>
+                <li><a href="#"><img src="../../assets/nav-bar/tools.png" alt="friends Icon">Tools</a></li>
+                <li><a href="../../filesystem/blogs/index.html"><img src="../../assets/nav-bar/blog.png" alt="guestbook Icon">Blog</a></li>
+                <li><a href="#"><img src="../../assets/nav-bar/resources.png" alt="faq Icon">Resources</a></li>
+                <li><a href="#"><img src="../../assets/nav-bar/software.png" alt="Chat Icon">Software</a></li>
+                <li><a href="../../filesystem/credits/index.html"><img src="../../assets/nav-bar/credits.png" alt="archives Icon">Credits</a></li>
+                <li><a href="https://trello.com/b/bosL3mrV/skye-workstation-queue"><img src="../../assets/nav-bar/workstation.png" alt="kitty Icon">Workstation</a></li>
+                  <li><a href="#"><img src="../../assets/nav-bar/sitemap.png" alt="kitty Icon">Sitemap</a></li>
+              </ul>
+              </div>
+              <div class="nav2-blur-overlay" onclick="closeNav2Sidebar()"></div>
+              <button id="nav2-sidebar-toggle"></button>
+            </div>
 
     <!-- Overlay-->
     <div class="starfall-container">

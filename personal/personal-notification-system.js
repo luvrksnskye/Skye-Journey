@@ -10,14 +10,14 @@ function showImageNotification(imagePath) {
     notification.src = imagePath;
   }
   
-  const audioOpen = new Audio('../assets/sound-effects/mystical-chime.mp3');
+  const audioOpen = new Audio('../../assets/sound-effects/mystical-chime.mp3');
   audioOpen.play().catch(err => console.warn('Audio playback failed:', err));
 
   notification.classList.remove('hide');
   setTimeout(() => notification.classList.add('show'), 100);
 
   const handleClick = () => {
-    const audioClose = new Audio('../assets/sound-effects/mystical-chime.mp3');
+    const audioClose = new Audio('../../assets/sound-effects/selection.mp3');
     audioClose.play().catch(err => console.warn('Audio playback failed:', err));
 
     notification.classList.add('hide');

@@ -1,0 +1,112 @@
+@font-face {
+  font-family: 'departure-mono';
+  src: url('../../assets/fonts/DepartureMono-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'genshin impact';
+  src: url('../../assets/fonts/Genshin\ Impact\ DRIP\ FONT.ttf') format('woff');
+}
+@font-face {
+  font-family: 'ZHFont';
+  src: url('../../assets/fonts/zhcn.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Base styles for all devices */
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'ZHFont', sans-serif;
+  color: white;
+}
+
+/* Background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-panel {
+  margin: 0 0 0 auto; /* Changed: Moves panel to the right */
+  padding-bottom: 0; /* Ensures no extra space at the bottom */
+  animation: float 3s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.music-panel img {
+  max-width: 60%;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.133))
+  drop-shadow(0 0 50px rgba(255, 255, 255, 0.118))
+  drop-shadow(0 0 70px rgba(255, 255, 255, 0.111));
+}
+
+@keyframes float {
+  0%, 100% {
+      transform: translateY(0); 
+  }
+  50% {
+      transform: translateY(-10px); 
+  }
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #7cc6ffcc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7cc6ffcc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7db8ff;
+}
+
+/* Body Styles */
+body ::selection {
+  background: #91ceff;
+}
+#s-m-t-tooltip {
+  padding: 0.5em 1em;
+  background: #ffffff1d;
+  color: #ffffff;
+  font-family: 'ZHFont', sans-serif;
+  font-size: 1.1em;
+  border-radius: 1em;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+  z-index: 999999;
+}

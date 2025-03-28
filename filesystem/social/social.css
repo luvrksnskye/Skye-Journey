@@ -447,3 +447,7 @@ iframe {
   width: 50%; 
   max-width: 800px; 
 }
+/* Body Styles */
+body ::selection {
+  background: #91ceff;
+}
