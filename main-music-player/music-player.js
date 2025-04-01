@@ -300,18 +300,6 @@ audio.addEventListener('loadedmetadata', () => {
     durationEl.textContent = formatTime(audio.duration);
 });
 
-// Add keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') {
-        e.preventDefault();
-        togglePlay();
-    } else if (e.code === 'ArrowLeft') {
-        playPrev();
-    } else if (e.code === 'ArrowRight') {
-        playNext();
-    }
-});
-
 // Create a shuffle function
 function shufflePlaylist() {
     const currentSong = playlist[currentTrack];
