@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="skye-panel-close">&times;</div>
         <div class="panel-content">
             <div class="header-container" style="display: flex; justify-content: center; align-items: center;">
-                <img src="../../assets/special-icons/arrow left.png" class="enter-arrow left-arrow" alt="Left Arrow" style="display: none;">
+                <img src="../../assets/special-icons/arrow-left.png" class="enter-arrow left-arrow" alt="Left Arrow" style="display: none;">
                 <h2 style="color: white; text-align: center;">About</h2>
                 <img src="../../assets/special-icons/arrow-right.png" class="enter-arrow right-arrow" alt="Right Arrow" style="display: none;">
             </div>

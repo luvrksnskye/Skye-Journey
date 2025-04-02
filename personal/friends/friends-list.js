@@ -27,7 +27,7 @@ styleSheet.textContent = `
         backdrop-filter: blur(10px);
         background: rgba(255, 255, 255, 0.05);
         display: none;
-        z-index: 3;
+        z-index: 100;
         opacity: 0;
         transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     }
